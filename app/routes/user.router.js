@@ -17,6 +17,7 @@ router.post(
   upload.single("avatar"),
   user.uploadAvatar
 );
+// TODO: Patch route for avatar
 
 // PATCH Routes
 router.patch("/user/:id", validate, user.update);
