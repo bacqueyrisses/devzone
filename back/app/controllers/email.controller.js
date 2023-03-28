@@ -20,7 +20,7 @@ const emailController = {
       if (!updatedUser)
         return next(new Error("User update active status failed."));
 
-      response.json("User email verified successfully.");
+      response.redirect("http://localhost:3000/login");
     } catch (error) {
       next(error);
     }
@@ -36,6 +36,7 @@ const emailController = {
       if (!user) return next(new Error404("User not found."));
 
       token = await db.token.getToken(id);
+      token = token.emailToken;
       if (!token) {
         token = String(crypto.randomUUID());
         await db.token.createEmail({ userId: id, token });
@@ -44,7 +45,7 @@ const emailController = {
       next(error);
     }
 
-    const link = `http:/${request.get("host")}/verify?token=${token}`;
+    const link = `http:/${request.get("host")}/email/verify?token=${token}`;
     const mailData = {
       from: "devzoneapplication@gmail.com",
       to: user.email,
@@ -71,6 +72,7 @@ const emailController = {
       if (!user) return next(new Error404("User not found."));
 
       let token = await db.token.getToken(id);
+      token = token.emailToken;
       if (!token) {
         token = String(crypto.randomUUID());
         await db.token.createEmail({ userId: id, token });
@@ -118,6 +120,33 @@ const emailController = {
       response.json("Password reset sucessfully.");
     } catch (error) {
       next(error);
+    }
+  },
+
+  contact: async function (request, response, next) {
+    const { email, message, subject, type } = request.body;
+    const mailData = {
+      from: email,
+      to: "devzoneapplication@gmail.com",
+      subject: `${type}: ${subject}`,
+      html: `<b>${message}</b>`,
+    };
+
+    const mailDataUser = {
+      from: "devzoneapplication@gmail.com",
+      to: email,
+      subject: `Devzone: Contact Form`,
+      html: `<b>Hello! <br>We've received your email and will respond to you shortly.<br>Subjet: ${subject} <br>Your message: ${message}</b>`,
+    };
+
+    try {
+      await transporter.sendMail(mailData);
+      await transporter.sendMail(mailDataUser);
+      return response.json("Form contact mail sent successfully.");
+    } catch (error) {
+      error.message = "Contact form mail couldn't be sent.";
+      error.type = "nodemailer";
+      return next(error);
     }
   },
 };

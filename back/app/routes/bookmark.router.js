@@ -34,7 +34,7 @@ router.get("/bookmarks/user/:id", bookmark.getByUser);
  * @return {object} 200 - bookmark response
  * @return {object} 500 - Unexpected error
  */
-router.post("/bookmark", validate, bookmark.create);
+router.post("/bookmark/", validate, bookmark.create);
 
 // PATCH Routes
 /**
@@ -60,7 +60,6 @@ router.delete("/bookmark/:id", bookmark.delete);
 
 export default router;
 
-// TODO: Bookmark && tools && categories by userId Routes => bookmarks/user/:id CRUD!!
+// TODO: Understand refresh tokens - Delete token ??
 
-// TODO: Understand refresh tokens
-// TODO: GitHub login
+// TODO: Auth: Check jwt/userId before API access

@@ -40,6 +40,7 @@ const bookmarkController = {
             "Couldn't find the bookmark with the user Id you requested."
           )
         );
+
       response.json(bookmark);
     } catch (error) {
       error.type = "database";
@@ -49,8 +50,11 @@ const bookmarkController = {
     }
   },
   create: async function (request, response, next) {
+    // const { id } = request.params;
+    const { name } = request.body;
+
     try {
-      const checkBookmark = db.bookmark.getBy({ name: request.body.name });
+      const checkBookmark = await db.bookmark.getBy({ name });
       if (checkBookmark) return next(new Error409("Bookmark already exists."));
 
       const newBookmark = await db.bookmark.create(request.body);

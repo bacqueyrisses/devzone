@@ -28,24 +28,28 @@ model Tool {
 }
 
 model User {
-  id        Int        @id @default(autoincrement())
-  email     String
-  password  String
-  firstname String?
-  lastname  String?
-  username  String
-  active    Boolean    @default(false)
-  website   String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @default(now()) @updatedAt
-  bookmark  Bookmark[]
-  Image     Image?
+  id             Int        @id @default(autoincrement())
+  type           String     @default("server")
+  email          String
+  password       String?
+  firstname      String?
+  lastname       String?
+  username       String
+  githubUsername String?
+  active         Boolean    @default(false)
+  website        String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @default(now()) @updatedAt
+  Avatar         Avatar?
+  bookmark       Bookmark[]
 
+  @@index([type])
   @@index([email])
   @@index([password])
   @@index([firstname])
   @@index([lastname])
   @@index([username])
+  @@index([githubUsername])
   @@index([active])
   @@index([website])
 }
@@ -57,8 +61,8 @@ model Bookmark {
   link        String?
   userId      Int?
   toolId      Int?
-  createdAt   DateTime @default(now())
   imgLink     String?
+  createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt
   tool        Tool?    @relation(fields: [toolId], references: [id], onDelete: Cascade)
   user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -81,8 +85,8 @@ model ToolsOnUsers {
 model Token {
   id              Int     @id @default(autoincrement())
   jwtRefreshToken String?
+  emailToken      String?
   expiration      String?
-  emailToken      String
   userId          Int
 
   @@index([jwtRefreshToken])
@@ -90,18 +94,21 @@ model Token {
   @@index([emailToken])
 }
 
-model Image {
-  id       Int    @id @default(autoincrement())
-  fileName String @unique
-  filePath String
-  mimeType String
-  size     BigInt
-  userId   Int?   @unique
-  User     User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+model Avatar {
+  id        Int      @id @default(autoincrement())
+  type      String   @default("server")
+  fileName  String?  @unique
+  filePath  String?  @unique
+  url       String
+  size      BigInt?
+  userId    Int      @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([type])
   @@index([fileName])
   @@index([filePath])
-  @@index([mimeType])
   @@index([size])
   @@index([userId])
 }

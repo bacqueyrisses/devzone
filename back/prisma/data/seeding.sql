@@ -6,7 +6,7 @@ TRUNCATE TABLE "User" RESTART IDENTITY CASCADE ;
 TRUNCATE TABLE "Token" RESTART IDENTITY CASCADE ;
 TRUNCATE TABLE "ToolsOnUsers" RESTART IDENTITY CASCADE ;
 TRUNCATE TABLE "Category" RESTART IDENTITY CASCADE ;
-TRUNCATE TABLE "Image" RESTART IDENTITY CASCADE ;
+TRUNCATE TABLE "Avatar" RESTART IDENTITY CASCADE ;
 
 INSERT INTO "Category"("name", "description", "order")
 
@@ -31,31 +31,24 @@ VALUES
     ('abdel@test.fr', '$2b$12$kG3nFBKrQ/Ve8hfqQYlHW.Mg61hxUS0NyDWeaLjQ7otICixTNo.7W', 'Abdel', 'Karim', 'abdel', true,'https///website.com'),
     ('azouaou@test.fr', '$2b$12$kG3nFBKrQ/Ve8hfqQYlHW.Mg61hxUS0NyDWeaLjQ7otICixTNo.7W', 'Azouaou', 'Benadda', 'test', true,'https///website.com');
 
-INSERT INTO "Image"("fileName", "filePath", "mimeType", "size", "userId")
-
-VALUES
-    ('test1', 'test1', 'jpg', 3754, 1),
-    ('test2', 'test2', 'jpg', 3754, 2);
-
-
 INSERT INTO "Bookmark"("name", "description", "link", "imgLink", "userId", "toolId")
 
 VALUES
     ('Favorite1', 'Super favorite 1', 'link1', '/image', 1, 2),
-    ('Favorite2', 'Super favorite 1', 'link1', '/image', 2, 1),
-    ('Favorite3', 'Super favorite 1', 'link1', '/image', 3, 2),
-    ('Favorite4', 'Super favorite 1', 'link1', '/image', 4, 2),
-    ('Favorite5', 'Super favorite 1', 'link1', '/image', 1, 1),
-    ('Favorite6', 'Super favorite 1', 'link1', '/image', 2, 2);
+    ('Favorite2', 'Super favorite 1', 'link2', '/image', 2, 1),
+    ('Favorite3', 'Super favorite 1', 'link3', '/image', 3, 2),
+    ('Favorite4', 'Super favorite 1', 'link4', '/image', 4, 2),
+    ('Favorite5', 'Super favorite 1', 'link5', '/image', 1, 1),
+    ('Favorite6', 'Super favorite 1', 'link6', '/image', 2, 2);
 
 INSERT INTO "Token"("expiration", "userId", "emailToken", "jwtRefreshToken")
 
 VALUES
-    (1000, 1, '20000', 'hjfeiuzhfeiuz'),
-    (1000, 2, '3000', 'vdvdevezve'),
-    (1000, 3, '40000', 'vcdsvezvgrve'),
-    (1000, 4, '50000', 'doizefijnze'),
-    (1000, 5, '60000', 'fbezhufezh');
+    (1000, 1, '20000', '/JXRvAA01KsLYdQN7Gz+zOwfolcpJT8U0X5Xqh2iBz8ZBNokoJIxGfp0kVZ2np8FX3PXfQMlHb1/CPGtpW50s4vl8fmPdLY='),
+    (1000, 2, '3000', 'ddZGNBR2ZkSJlzGlSX2fhM3HaLQlCvcRmiWQZ20ISvZ5Vw8M2PAaHMA7gWYfsSwiZ0C0UM1JQycD/JXRvAA01KsLYdQN7Gz+zOwfolcpJT8U0X5Xqh2iBz8ZBNokoJIxGfp0kVZ2np8FX3PXfQMlHb1/CPGtpW50s4vl8fmPdLY='),
+    (1000, 3, '40000', 'ddZGNBR2ZkSJlzGlSX2fhM3HaLQlCvcRmiWQZ20ISvZ5Vw8M2PAaHMA7gWYfsSwiZ0C0UM1JQycD/JXRvAA01KsLYdQN7Gz+zOwfolcpJT8U0X5Xqh2iBz8ZBNokoJIxGfp0kVZ2np8FX3PXfQMlHb1/CPGtpW50s4vl8fmPdLY='),
+    (1000, 4, '50000', 'ddZGNBR2ZkSJlzGlSX2fhM3HaLQlCvcRmiWQZ20ISvZ5Vw8M2PAaHMA7gWYfsSwiZ0C0UM1JQycD/JXRvAA01KsLYdQN7Gz+zOwfolcpJT8U0X5Xqh2iBz8ZBNokoJIxGfp0kVZ2np8FX3PXfQMlHb1/CPGtpW50s4vl8fmPdLY='),
+    (1000, 5, '60000', 'ddZGNBR2ZkSJlzGlSX2fhM3HaLQlCvcRmiWQZ20ISvZ5Vw8M2PAaHMA7gWYfsSwiZ0C0UM1JQycD/JXRvAA01KsLYdQN7Gz+zOwfolcpJT8U0X5Xqh2iBz8ZBNokoJIxGfp0kVZ2np8FX3PXfQMlHb1/CPGtpW50s4vl8fmPdLY=');
 
 
 INSERT INTO "ToolsOnUsers" ("userId", "toolId")
