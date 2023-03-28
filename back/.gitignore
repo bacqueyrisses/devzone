@@ -1,0 +1,6 @@
+../node_modules
+.env
+logs/access.log
+public/images/*
+!public/images/.gitkeep
+**/.DS_Store
