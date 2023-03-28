@@ -27,7 +27,7 @@ import { NavLink } from 'react-router-dom';
 import logodevzoneblack from '../../assets/images/devzonewhite.png';
 import logodz from '../../assets/images/logo-dz.png';
 import { logout, thunkGetUser } from '../../features/user/userSlice';
-import SideBar from '../SideBar/index';
+import SideBar from '../SideBar';
 
 function NavBar() {
   const user = useSelector((state) => state.user.username);

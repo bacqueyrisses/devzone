@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { thunkLogin } from '../../features/user/userSlice';
-import GithubAuthButton from '../GithubAuthButton/index';
+import GithubAuthButton from '../GithubAuthButton';
 
 function Login() {
   const [emailOrUsername, setEmailOrUsername] = useState('');

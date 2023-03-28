@@ -27,7 +27,7 @@ import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { setFetchResponse, thunkSignup } from '../../features/user/userSlice';
-import GithubAuthButton from '../GithubAuthButton/index';
+import GithubAuthButton from '../GithubAuthButton';
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
