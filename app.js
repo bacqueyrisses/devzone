@@ -8,6 +8,7 @@ import error404 from "./app/middlewares/error404.js";
 const app = express();
 
 app.use(cors());
+app.disable("x-powered-by");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
